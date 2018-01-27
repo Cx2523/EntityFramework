@@ -24,31 +24,60 @@ namespace ConsoleApp1
                     Title = "The Bat Man Series"
                 };
 
+                Artist artist1 = new Artist()
+                {
+                    Name = "Stan Lee"
+                };
+                Artist artist2 = new Artist()
+                {
+                    Name = "Bruce Lee"
+                };
+                Artist artist3 = new Artist()
+                {
+                    Name = "Chuck Norris"
+                };
 
-                context.ComicBooks.Add(new ComicBook()
+                Role role1 = new Role()
+                {
+                    Name = "Pencils"
+                };
+                Role role2 = new Role()
+                {
+                    Name = "Colors"
+                };
+
+                ComicBook comicbook1 = new ComicBook()
                 {
                     Series = SpiderManSeries,
                     IssueNumber = 1,
                     Description = "Really Neato",
                     PublishedOn = DateTime.Today
-                });
-
-                context.ComicBooks.Add(new ComicBook()
+                };
+                ComicBook comicbook2 = new ComicBook()
                 {
                     Series = SpiderManSeries,
                     IssueNumber = 2,
                     Description = "Really Neato",
                     PublishedOn = DateTime.Today
-                });
-
-                context.ComicBooks.Add(new ComicBook()
+                };
+                ComicBook comicbook3 = new ComicBook()
                 {
                     Series = BatManSeries,
                     IssueNumber = 1,
                     Description = "Really Neato",
                     PublishedOn = DateTime.Today
-                });
+                };
 
+                comicbook1.AddArtist(artist1, role1);
+                comicbook1.AddArtist(artist2, role2);
+                comicbook2.AddArtist(artist3, role1);
+                comicbook2.AddArtist(artist2, role2);
+                comicbook3.AddArtist(artist3, role1);
+                comicbook3.AddArtist(artist1, role2);
+
+                context.ComicBooks.Add(comicbook1);
+                context.ComicBooks.Add(comicbook2);
+                context.ComicBooks.Add(comicbook3);
                 context.SaveChanges();
 
                 var comicBooks = context.ComicBooks.ToList();
