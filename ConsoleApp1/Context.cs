@@ -10,6 +10,11 @@ namespace ConsoleApp1
 {
     public class Context : DbContext
     {
+        public Context()
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<Context>());
+        }
         public DbSet<ComicBook> ComicBooks { get; set; }
+        public DbSet<Series> Series { get; set; }
     }
 }
