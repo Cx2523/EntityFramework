@@ -18,6 +18,7 @@ namespace ConsoleApp1.Models
         public int IssueNumber { get; set; }
         public string Description { get; set; }
         public DateTime PublishedOn { get; set; }
+        public Decimal Price { get; set; }
 
         public Series Series { get; set; }
         public ICollection<ArtistComicBookBridge> Artists { get; set; }

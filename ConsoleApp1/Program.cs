@@ -51,21 +51,24 @@ namespace ConsoleApp1
                     Series = SpiderManSeries,
                     IssueNumber = 1,
                     Description = "Really Neato",
-                    PublishedOn = DateTime.Today
+                    PublishedOn = DateTime.Today,
+                    Price = 5.25M
                 };
                 ComicBook comicbook2 = new ComicBook()
                 {
                     Series = SpiderManSeries,
                     IssueNumber = 2,
                     Description = "Really Neato",
-                    PublishedOn = DateTime.Today
+                    PublishedOn = DateTime.Today,
+                    Price = 3.45M
                 };
                 ComicBook comicbook3 = new ComicBook()
                 {
                     Series = BatManSeries,
                     IssueNumber = 1,
                     Description = "Really Neato",
-                    PublishedOn = DateTime.Today
+                    PublishedOn = DateTime.Today,
+                    Price = 4M
                 };
 
                 comicbook1.AddArtist(artist1, role1);

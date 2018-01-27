@@ -14,6 +14,11 @@ namespace ConsoleApp1
         {
             Database.SetInitializer(new DropCreateDatabaseAlways<Context>());
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ComicBook>().Property(cb => cb.Price).HasPrecision(5, 2);
+        }
+
         public DbSet<ComicBook> ComicBooks { get; set; }
         public DbSet<Series> Series { get; set; }
     }
