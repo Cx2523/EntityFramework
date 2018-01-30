@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ConsoleApp1
         {
             using (var context = new Context())
             {
+                context.Database.Log = (message) => Debug.WriteLine(message);
 
                 Series SpiderManSeries = new Series()
                 {
@@ -58,7 +60,7 @@ namespace ConsoleApp1
                 {
                     Series = SpiderManSeries,
                     IssueNumber = 2,
-                    Description = "Really Neato",
+                    Description = "Really Cool",
                     PublishedOn = DateTime.Today,
                     Price = 3.45M
                 };
@@ -81,17 +83,27 @@ namespace ConsoleApp1
                 context.ComicBooks.Add(comicbook1);
                 context.ComicBooks.Add(comicbook2);
                 context.ComicBooks.Add(comicbook3);
-                context.SaveChanges();
-
-                var comicBooks = context.ComicBooks.ToList();
-                
-                foreach(var comicBook in comicBooks)
-                {
-                    Console.WriteLine(comicBook.Series.Title);
-                }
-                Console.WriteLine("Test");
-                Console.ReadLine();
+                context.SaveChanges();    
             }
+
+            ComicbookRepository CbRepo = new ComicbookRepository();
+            var ComicBooksList = CbRepo.GetComicBooks().ToList();
+            ComicBook TestUpdateComicBook = null;
+            foreach (ComicBook cb in ComicBooksList)
+            {
+                Console.WriteLine("Series Title: {0}", cb.Id);
+
+                if (cb.Id == 1)
+                {
+                    TestUpdateComicBook = cb;
+                }
+            }
+            CbRepo.UpdateComicBooks(TestUpdateComicBook);
+
+            Console.ReadLine();
+
+
+
         }
     }
 }
